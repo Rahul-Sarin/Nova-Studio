@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <style>
+      .nova-text {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 48px;
+        fill: #00d9ff;
+      }
+      .nova-dot {
+        fill: #00d9ff;
+      }
+    </style>
+  </defs>
+  
+  <!-- NOVA text -->
+  <text x="0" y="45" class="nova-text">NOVA</text>
+  
+  <!-- Dot after NOVA -->
+  <circle cx="185" cy="42" r="6" class="nova-dot"/>
+</svg>

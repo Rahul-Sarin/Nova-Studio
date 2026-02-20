@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nova Studio Services - Web Development, AI Tools & Solutions, Workflow Automation, Process Optimization, and Digital Strategy">
+    <title>Services - Nova Studio</title>
+    
+    <!-- Lenis CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.17/dist/lenis.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">NOVA</span>
+                    <span style="font-size: 1.5rem; font-weight: 700; color: var(--neon-cyan);">.</span>
+                    <span class="gradient-text" style="font-size: 1.5rem; font-weight: 700;">STUDIO</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li class="nav-cta"><a href="contact.html" class="btn">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 70vh;">
+        <div class="container">
+            <div class="hero-content" data-reveal>
+                <h1 class="hero-title">
+                    Our <span class="gradient-text">Services</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Comprehensive solutions to transform your digital presence and optimize your business operations
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Detail Section -->
+    <section class="section">
+        <div class="container">
+            <!-- Service 1: Web Development -->
+            <div id="web" class="card glass service-detail" data-reveal>
+                <div class="service-header">
+                    <div class="service-icon" style="font-size: 4rem;">🌐</div>
+                    <h2>Web Development</h2>
+                </div>
+                <p>
+                    Build powerful, modern websites and web applications that engage your audience and drive business growth. From landing pages to complex web apps, we create digital experiences that convert.
+                </p>
+                
+                <h3>What's Included:</h3>
+                <div class="service-features-grid">
+                    <div class="service-feature-item">
+                        <h4>✓ Custom Website Design</h4>
+                        <p>Responsive, modern designs tailored to your brand</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Web Applications</h4>
+                        <p>Interactive tools and platforms for your users</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ E-Commerce Solutions</h4>
+                        <p>Secure online stores with payment integration</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ CMS Integration</h4>
+                        <p>Easy content management for your team</p>
+                    </div>
+                </div>
+                
+                <div class="service-cta">
+                    <a href="contact.html" class="btn btn-primary js-magnetic">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Service 2: AI Tools & Solutions -->
+            <div id="ai" class="card glass service-detail" data-reveal>
+                <div class="service-header">
+                    <div class="service-icon" style="font-size: 4rem;">🤖</div>
+                    <h2>AI Tools & Solutions</h2>
+                </div>
+                <p>
+                    Harness AI to transform your business operations. From opportunity identification to custom tool development, we help you automate workflows, optimize processes, and scale efficiently.
+                </p>
+                
+                <h3>What's Included:</h3>
+                <div class="service-features-grid">
+                    <div class="service-feature-item">
+                        <h4>✓ AI Opportunity Scan</h4>
+                        <p>Identify where AI delivers maximum value in your operations</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ AI Blueprint Creation</h4>
+                        <p>Strategic roadmap for implementation and integration</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Custom AI Development</h4>
+                        <p>Custom AI tools that automate repetitive tasks</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Process Automation with AI</h4>
+                        <p>Intelligent automation that learns and improves</p>
+                    </div>
+                </div>
+                
+                <div class="service-cta">
+                    <a href="contact.html" class="btn btn-primary js-magnetic">Explore AI Solutions</a>
+                </div>
+            </div>
+
+            <!-- Service 3: Workflow Automation -->
+            <div id="automation" class="card glass service-detail" data-reveal>
+                <div class="service-header">
+                    <div class="service-icon" style="font-size: 4rem;">⚡</div>
+                    <h2>Workflow Automation</h2>
+                </div>
+                <p>
+                    Eliminate repetitive tasks and streamline your operations with intelligent automation. Save time, reduce errors, and focus on what matters—growing your business.
+                </p>
+                
+                <h3>What's Included:</h3>
+                <div class="service-features-grid">
+                    <div class="service-feature-item">
+                        <h4>✓ Process Analysis</h4>
+                        <p>Identify automation opportunities in your workflow</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Custom Automation</h4>
+                        <p>Tailored solutions for your specific needs</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Integration Services</h4>
+                        <p>Connect your tools and platforms seamlessly</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Training & Support</h4>
+                        <p>Ensure your team can leverage the automation</p>
+                    </div>
+                </div>
+                
+                <div class="service-cta">
+                    <a href="contact.html" class="btn btn-primary js-magnetic">Automate Now</a>
+                </div>
+            </div>
+
+            <!-- Service 4: Process Optimization -->
+            <div id="optimization" class="card glass service-detail" data-reveal>
+                <div class="service-header">
+                    <div class="service-icon" style="font-size: 4rem;">📊</div>
+                    <h2>Process Optimization</h2>
+                </div>
+                <p>
+                    Maximize efficiency and profitability by identifying bottlenecks and implementing data-driven improvements. Turn your operations into a competitive advantage.
+                </p>
+                
+                <h3>What's Included:</h3>
+                <div class="service-features-grid">
+                    <div class="service-feature-item">
+                        <h4>✓ Workflow Audit</h4>
+                        <p>Comprehensive analysis of current processes</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Bottleneck Identification</h4>
+                        <p>Pinpoint areas causing delays and inefficiencies</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Improvement Strategy</h4>
+                        <p>Data-driven recommendations for optimization</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Implementation Support</h4>
+                        <p>Hands-on help deploying new processes</p>
+                    </div>
+                </div>
+                
+                <div class="service-cta">
+                    <a href="contact.html" class="btn btn-primary js-magnetic">Optimize Today</a>
+                </div>
+            </div>
+
+            <!-- Service 5: Digital Strategy -->
+            <div id="strategy" class="card glass service-detail" data-reveal>
+                <div class="service-header">
+                    <div class="service-icon" style="font-size: 4rem;">🎯</div>
+                    <h2>Digital Strategy</h2>
+                </div>
+                <p>
+                    Develop a comprehensive digital roadmap aligned with your business goals. From market analysis to technology selection, we guide you toward sustainable growth.
+                </p>
+                
+                <h3>What's Included:</h3>
+                <div class="service-features-grid">
+                    <div class="service-feature-item">
+                        <h4>✓ Market Analysis</h4>
+                        <p>Understand your competitive landscape</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Technology Roadmap</h4>
+                        <p>Plan your digital transformation journey</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Growth Strategy</h4>
+                        <p>Actionable plans to scale your business</p>
+                    </div>
+                    <div class="service-feature-item">
+                        <h4>✓ Ongoing Advisory</h4>
+                        <p>Continuous strategic guidance as you grow</p>
+                    </div>
+                </div>
+                
+                <div class="service-cta">
+                    <a href="contact.html" class="btn btn-primary js-magnetic">Plan Your Strategy</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" style="background: rgba(255, 255, 255, 0.02); padding: 4rem 0;">
+        <div class="container">
+            <h2 class="section-title" data-reveal>
+                Our <span class="gradient-text">Process</span>
+            </h2>
+            <p class="section-subtitle" data-reveal>
+                A proven approach to delivering exceptional results
+            </p>
+            
+            <div style="max-width: 900px; margin: 3rem auto 0;">
+                <div style="display: grid; gap: 2rem;">
+                    <div class="card glass" data-reveal>
+                        <div style="display: flex; align-items: start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.5rem; flex-shrink: 0;">1</div>
+                            <div class="service-feature-item">
+                                <h3 style="margin-bottom: 0.5rem;">Discovery</h3>
+                                <p>We start by understanding your business, goals, challenges, and current processes. This deep dive ensures we create solutions that truly fit your needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card glass" data-reveal>
+                        <div style="display: flex; align-items: start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.5rem; flex-shrink: 0;">2</div>
+                            <div class="service-feature-item">
+                                <h3 style="margin-bottom: 0.5rem;">Strategy</h3>
+                                <p>Based on our findings, we develop a comprehensive plan with clear milestones, timelines, and success metrics. You'll know exactly what to expect.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card glass" data-reveal>
+                        <div style="display: flex; align-items: start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.5rem; flex-shrink: 0;">3</div>
+                            <div class="service-feature-item">
+                                <h3 style="margin-bottom: 0.5rem;">Execution</h3>
+                                <p>We implement the solution with precision and regular communication. You'll receive updates and have opportunities for feedback throughout.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card glass" data-reveal>
+                        <div style="display: flex; align-items: start; gap: 1.5rem;">
+                            <div style="background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple)); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.5rem; flex-shrink: 0;">4</div>
+                            <div class="service-feature-item">
+                                <h3 style="margin-bottom: 0.5rem;">Support</h3>
+                                <p>After launch, we provide training, documentation, and ongoing support to ensure you get maximum value from your investment.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section">
+        <div class="container">
+            <div class="cta-content" data-reveal>
+                <h2>Ready to Get Started?</h2>
+                <p>Let's discuss which services are right for your business goals.</p>
+                <a href="contact.html" class="btn btn-primary js-magnetic">Book a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0; font-size: 1.5rem;"><span style="color: var(--text-primary);">NOVA</span><span style="color: var(--neon-cyan);">.</span><span class="gradient-text">STUDIO</span></h3>
+                    </div>
+                    <p>Technology & Digital Strategy Consulting</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Get Started</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:contact@getnova.ca">contact@getnova.ca</a></li>
+                            <li><a href="tel:+19057444242">+1 (905) 744-4242</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nova Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.17/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

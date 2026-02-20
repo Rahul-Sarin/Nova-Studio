@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particle Animation Test - Nova Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d9ff, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #b4b4b8;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .status {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+        }
+
+        .status-label {
+            color: #b4b4b8;
+        }
+
+        .status-value {
+            color: #00d9ff;
+            font-weight: bold;
+        }
+
+        .success {
+            color: #00d9ff;
+        }
+
+        .instructions {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            max-width: 500px;
+        }
+
+        .instructions h3 {
+            color: #00d9ff;
+            margin-bottom: 1rem;
+        }
+
+        .instructions ul {
+            text-align: left;
+            color: #b4b4b8;
+            line-height: 1.8;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #particleCanvas {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="content">
+        <h1>✅ Particle Animation Fixed!</h1>
+        <p>The dots-and-lines background animation is now fully functional. Move your mouse to interact with the particles!</p>
+
+        <div class="status">
+            <div class="status-item">
+                <span class="status-label">Canvas Status:</span>
+                <span class="status-value" id="canvasStatus">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Particle Count:</span>
+                <span class="status-value" id="particleCount">0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Animation FPS:</span>
+                <span class="status-value" id="fps">0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Mouse Tracking:</span>
+                <span class="status-value" id="mouseStatus">Waiting...</span>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>What to Look For:</h3>
+            <ul>
+                <li>✨ Cyan dots floating across the screen</li>
+                <li>🔗 Lines connecting nearby particles</li>
+                <li>🖱️ Particles moving away from your cursor</li>
+                <li>↩️ Particles returning to their base positions</li>
+                <li>🌊 Gentle drift movement</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Simplified particle system for testing
+        const NovaStudio = {
+            particles: {
+                canvas: null,
+                ctx: null,
+                array: [],
+                mouse: { x: null, y: null, radius: 150 }
+            }
+        };
+
+        class Particle {
+            constructor(canvasWidth, canvasHeight) {
+                this.x = Math.random() * canvasWidth;
+                this.y = Math.random() * canvasHeight;
+                this.size = Math.random() * 2 + 0.5;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = Math.random() * 30 + 10;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+
+            draw(ctx) {
+                ctx.fillStyle = 'rgba(0, 217, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            update(mouse, canvas) {
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const forceDirectionX = dx / distance;
+                const forceDirectionY = dy / distance;
+                const maxDistance = mouse.radius;
+                const force = (maxDistance - distance) / maxDistance;
+                const directionX = forceDirectionX * force * this.density;
+                const directionY = forceDirectionY * force * this.density;
+
+                if (distance < mouse.radius) {
+                    this.x -= directionX;
+                    this.y -= directionY;
+                } else {
+                    if (this.x !== this.baseX) {
+                        const dx = this.x - this.baseX;
+                        this.x -= dx / 10;
+                    }
+                    if (this.y !== this.baseY) {
+                        const dy = this.y - this.baseY;
+                        this.y -= dy / 10;
+                    }
+                }
+
+                this.baseX += this.speedX;
+                this.baseY += this.speedY;
+
+                if (this.baseX < 0) this.baseX = canvas.width;
+                if (this.baseX > canvas.width) this.baseX = 0;
+                if (this.baseY < 0) this.baseY = canvas.height;
+                if (this.baseY > canvas.height) this.baseY = 0;
+            }
+        }
+
+        function initParticles() {
+            const canvas = document.getElementById('particleCanvas');
+            if (!canvas) {
+                document.getElementById('canvasStatus').textContent = '❌ Not Found';
+                return;
+            }
+
+            NovaStudio.particles.canvas = canvas;
+            NovaStudio.particles.ctx = canvas.getContext('2d');
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const numberOfParticles = Math.min(
+                Math.floor((canvas.width * canvas.height) / 9000),
+                120
+            );
+
+            NovaStudio.particles.array = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                NovaStudio.particles.array.push(new Particle(canvas.width, canvas.height));
+            }
+
+            window.addEventListener('mousemove', (e) => {
+                NovaStudio.particles.mouse.x = e.x;
+                NovaStudio.particles.mouse.y = e.y;
+                document.getElementById('mouseStatus').textContent = `✅ (${e.x}, ${e.y})`;
+            });
+
+            window.addEventListener('mouseout', () => {
+                NovaStudio.particles.mouse.x = null;
+                NovaStudio.particles.mouse.y = null;
+                document.getElementById('mouseStatus').textContent = '⏸️ Outside Window';
+            });
+
+            document.getElementById('canvasStatus').textContent = '✅ Active';
+            document.getElementById('particleCount').textContent = numberOfParticles;
+        }
+
+        function connectParticles(ctx, particles) {
+            const maxDistance = 100;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = (1 - distance / maxDistance) * 0.3;
+                        ctx.strokeStyle = `rgba(0, 217, 255, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        let lastTime = 0;
+        let frameCount = 0;
+        let fps = 0;
+
+        function animateParticles(currentTime) {
+            const ctx = NovaStudio.particles.ctx;
+            const canvas = NovaStudio.particles.canvas;
+            const particles = NovaStudio.particles.array;
+            const mouse = NovaStudio.particles.mouse;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update(mouse, canvas);
+                particle.draw(ctx);
+            });
+
+            connectParticles(ctx, particles);
+
+            // Calculate FPS
+            frameCount++;
+            if (currentTime - lastTime >= 1000) {
+                fps = frameCount;
+                document.getElementById('fps').textContent = fps;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            initParticles();
+            requestAnimationFrame(animateParticles);
+        });
+    </script>
+</body>
+</html>
