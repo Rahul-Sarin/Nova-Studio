@@ -95,7 +95,7 @@
         }
 
         // Form submission - DISABLED to allow Web3Forms to handle it
-        //form.addEventListener('submit', handleSubmit);
+        // form.addEventListener('submit', handleSubmit);
 
         // Validation functions
         function validateName() {

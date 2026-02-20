@@ -548,3 +548,73 @@ window.addEventListener('beforeunload', () => {
     NovaStudio.lenis.destroy();
   }
 });
+
+// ========================================
+// Mobile Menu Toggle
+// ========================================
+
+function initMobileMenu() {
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const navLinkItems = document.querySelectorAll('.nav-links a');
+  
+  if (!navToggle || !navLinks) return;
+  
+  // Toggle menu on button click
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isActive = navLinks.classList.contains('active');
+    
+    if (isActive) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+  
+  // Close menu when clicking on a link
+  navLinkItems.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('active') && 
+        !navLinks.contains(e.target) && 
+        !navToggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+  
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+  
+  function openMenu() {
+    navLinks.classList.add('active');
+    navToggle.classList.add('active');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // Prevent body scroll when menu is open
+  }
+  
+  function closeMenu() {
+    navLinks.classList.remove('active');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = ''; // Restore body scroll
+  }
+  
+  console.log('Mobile menu initialized');
+}
+
+// Initialize mobile menu when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMobileMenu);
+} else {
+  initMobileMenu();
+}
